@@ -1,0 +1,15 @@
+.phone{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.phone input[type=number] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
+  .phone_label{
+    font-size: 20px;
+  }

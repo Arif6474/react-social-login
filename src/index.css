@@ -1,0 +1,90 @@
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --white: #ffffff;
+  --gray-1: #e6e6e6;
+  --gray-2: #cccccc;
+  --gray-3: #b3b3b3;
+  --gray-4: #999999;
+  --gray-5: #808080;
+  --gray-6: #666666;
+  --gray-7: #4d4d4d;
+  --gray-8: #333333;
+  --gray-9: #1a1a1a;
+  --black: #000000;
+
+  --off-white: #f0f0f0;
+  --light-gray: #fafafa;
+  --light-gold: #bb9760;
+  --navy-blue: #361063;
+
+  --bright-red: #eb5757;
+  --dark-red: #660101;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #F5F5F5;
+  position: relative;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: "Jost", sans-serif;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+span {
+  display: inline-block;
+}
+
+a {
+  text-decoration: none;
+}
+
+svg,
+img {
+  vertical-align: middle;
+}
+
+button {
+  border: 0;
+  background-color: transparent;
+  cursor: auto;
+}
+
+input,
+textarea,
+select {
+  border: 0;
+}
+
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+button:focus-visible {
+  outline: none;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
