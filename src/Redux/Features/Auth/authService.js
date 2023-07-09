@@ -14,6 +14,30 @@ async function socialRegister(employeeData) {
     return response.data
 
 }
+
+async function addPhoneNumber(employeeData) {
+
+    const response = await axios.patch(CONSUMERS_API + "addMobileNumber/", employeeData)
+
+    if (response.data) {
+        localStorage.setItem('employee', JSON.stringify(response.data))
+    }
+
+    return response.data
+
+}
+async function socialLogin(employeeData) {
+
+    const response = await axios.post(CONSUMERS_API + "loginWithFaceBook/", employeeData)
+
+    if (response.data) {
+        localStorage.setItem('employee', JSON.stringify(response.data))
+    }
+
+    return response.data
+
+}
+
 // async function register(employeeData) {
 
 //     const response = await axios.post(EMPLOYEES_API + 'register', employeeData);
@@ -44,6 +68,8 @@ const logout = () => {
 
 const authService = {
     socialRegister,
+    addPhoneNumber,
+    socialLogin,
     // register,
     logout
     // login

@@ -22,6 +22,17 @@ export const socialRegister = createAsyncThunk(
         }
     }
 )
+export const addPhoneNumber = createAsyncThunk(
+    'auth/addPhoneNumber',
+    async (employee, thunkAPI) => {
+        try {
+            return await authService.addPhoneNumber(employee)
+        } catch (error) {
+            const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+            return thunkAPI.rejectWithValue(message)
+        }
+    }
+)
 
 export const socialLogin = createAsyncThunk(
     'auth/socialLogin',
@@ -93,6 +104,34 @@ export const authSlice = createSlice({
                 state.message = action.payload
                 state.employee = null
             })
+            .addCase(addPhoneNumber.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(addPhoneNumber.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.employee = action.payload
+            })
+            .addCase(addPhoneNumber.rejected, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = false
+                state.message = action.payload
+                state.employee = null
+            })
+            .addCase(socialLogin.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(socialLogin.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.employee = action.payload
+            })
+            .addCase(socialLogin.rejected, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = false
+                state.message = action.payload
+                state.employee = null
+            })
         // .addCase(register.pending, (state) => {
         //     state.isLoading = true
         // })
@@ -123,6 +162,7 @@ export const authSlice = createSlice({
         // })
         .addCase(logout.fulfilled, (state) => {
             state.employee = null
+            state.message = ''
         })
     }
 })
