@@ -13,7 +13,7 @@ function AddNumber() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (employee?.fbId && employee.mobile) {
+        if ((employee?.fbId || employee?.gmailId) && employee.mobile) {
             navigate('/checkout')
         }
     }, [employee, navigate])
@@ -27,20 +27,7 @@ function AddNumber() {
             const userData = { mobile, token }
 
             dispatch(addPhoneNumber(userData));
-            // const config = {
-            //     headers: {
-            //         Authorization: `Bearer ${employee.token}`
-            //     }
-            // }
-            // const userData = {mobile , token}
-            // const response = await axios.patch(CONSUMERS_API + "addMobileNumber/", userData )
-
-            // console.log("🚀 ~ file: AddNumber.js:13 ~ handleAddNumber ~ response:", response)
-
-            // if (response.data) {
-            //     localStorage.setItem('employee', JSON.stringify(response.data))
-            //     navigate('/checkout')
-            // }
+      
         } catch (error) {
             console.log(error);
         }

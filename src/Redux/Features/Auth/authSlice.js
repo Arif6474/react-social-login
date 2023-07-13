@@ -10,6 +10,7 @@ const initialState = {
     isLoading: false,
     message: ''
 }
+//facebook
 
 export const socialRegister = createAsyncThunk(
     'auth/socialRegister',
@@ -39,6 +40,32 @@ export const socialLogin = createAsyncThunk(
     async (employee, thunkAPI) => {
         try {
             return await authService.socialLogin(employee)
+        } catch (error) {
+            const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+            return thunkAPI.rejectWithValue(message)
+        }
+    }
+)
+
+//google
+
+export const registerWithGoogle = createAsyncThunk(
+    'auth/registerWithGoogle',
+    async (employee, thunkAPI) => {
+        try {
+            return await authService.registerWithGoogle(employee)
+        } catch (error) {
+            const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+            return thunkAPI.rejectWithValue(message)
+        }
+    }
+)
+
+export const LoginWithGoogle = createAsyncThunk(
+    'auth/LoginWithGoogle',
+    async (employee, thunkAPI) => {
+        try {
+            return await authService.LoginWithGoogle(employee)
         } catch (error) {
             const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
             return thunkAPI.rejectWithValue(message)
@@ -127,6 +154,34 @@ export const authSlice = createSlice({
                 state.employee = action.payload
             })
             .addCase(socialLogin.rejected, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = false
+                state.message = action.payload
+                state.employee = null
+            })
+            .addCase(registerWithGoogle.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(registerWithGoogle.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.employee = action.payload
+            })
+            .addCase(registerWithGoogle.rejected, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = false
+                state.message = action.payload
+                state.employee = null
+            })        
+            .addCase(LoginWithGoogle.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(LoginWithGoogle.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.employee = action.payload
+            })
+            .addCase(LoginWithGoogle.rejected, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = false
                 state.message = action.payload

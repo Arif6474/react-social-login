@@ -37,6 +37,30 @@ async function socialLogin(employeeData) {
     return response.data
 
 }
+//google
+async function registerWithGoogle(employeeData) {
+
+    const response = await axios.post(CONSUMERS_API + "registerWithGmail/", employeeData)
+
+    if (response.data) {
+        localStorage.setItem('employee', JSON.stringify(response.data))
+    }
+
+    return response.data
+
+}
+
+async function LoginWithGoogle(employeeData) {
+
+    const response = await axios.post(CONSUMERS_API + "loginWithGmail/", employeeData)
+
+    if (response.data) {
+        localStorage.setItem('employee', JSON.stringify(response.data))
+    }
+
+    return response.data
+
+}
 
 // async function register(employeeData) {
 
@@ -70,6 +94,8 @@ const authService = {
     socialRegister,
     addPhoneNumber,
     socialLogin,
+    registerWithGoogle,
+    LoginWithGoogle,
     // register,
     logout
     // login
